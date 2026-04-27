@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>404 • Страница не найдена • Оскар</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0f0f0f;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f5f5f5;
+      line-height: 1.4;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ----- АНИМАЦИИ ----- */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes softGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.35), 0 0 15px rgba(200, 200, 255, 0.5);
+      }
+      100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-12px) rotate(3deg);
+      }
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes borderGlow {
+      0% {
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      }
+      50% {
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+      }
+      100% {
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ----- КОНТЕЙНЕР ----- */
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      gap: 1.5rem;
+      max-width: 650px;
+      width: 100%;
+    }
+
+    /* ----- ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ----- */
+    .decorative-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #2a2a2a, #141414);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      animation: float 6s infinite ease-in-out, borderGlow 4s infinite;
+      margin-bottom: 0.5rem;
+    }
+
+    .decorative-circle span {
+      background: linear-gradient(135deg, #e0e0e0, #888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 300;
+    }
+
+    /* ----- КОД ОШИБКИ ----- */
+    .error-code {
+      font-size: clamp(5rem, 12vw, 8rem);
+      font-weight: 600;
+      letter-spacing: -3px;
+      line-height: 1;
+      animation: softGlow 4s infinite ease-in-out;
+      background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ----- СООБЩЕНИЕ ----- */
+    .error-message {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      max-width: 420px;
+      font-weight: 400;
+      animation: fadeInUp 0.9s ease 0.3s both;
+      line-height: 1.6;
+    }
+
+    .error-subtitle {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #707070;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      animation: fadeInUp 0.9s ease 0.2s both;
+    }
+
+    /* ----- КНОПКИ ----- */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.9s ease 0.5s both;
+      margin-top: 0.5rem;
+    }
+
+    .primary-btn {
+      background: white;
+      color: #0f0f0f;
+      font-weight: 600;
+      padding: 0.8rem 2.2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 10px 20px -8px rgba(255, 255, 255, 0.12);
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .primary-btn:hover {
+      background: #e6e6e6;
+      transform: scale(1.03);
+      box-shadow: 0 14px 26px -8px rgba(255, 255, 255, 0.25);
+    }
+
+    .secondary-btn {
+      color: #cccccc;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 40px;
+      font-weight: 500;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: transparent;
+    }
+
+    .secondary-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: white;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* ----- ДЕКОРАТИВНЫЕ ЛИНИИ ----- */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      animation: pulse 3s infinite;
+    }
+
+    /* ----- ФУТЕР ----- */
+    .footer-note {
+      font-size: 0.8rem;
+      color: #4a4a4a;
+      animation: fadeInUp 0.9s ease 0.8s both;
+      margin-top: 1rem;
+    }
+
+    .footer-note a {
+      color: #6a6a6a;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-note a:hover {
+      color: #aaaaaa;
+    }
+
+    /* ----- АДАПТИВ ----- */
+    @media (max-width: 500px) {
+      .error-container {
+        gap: 1rem;
+        padding: 1.5rem;
+      }
+      .error-code {
+        font-size: 4rem;
+      }
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    
+    <!-- Декоративный круг с символом -->
+    <div class="decorative-circle">
+      <span>✧</span>
+    </div>
+
+    <!-- Код ошибки -->
+    <div class="error-code">404</div>
+
+    <!-- Подпись -->
+    <div class="error-subtitle">page not found</div>
+
+    <!-- Сообщение -->
+    <p class="error-message">
+      It seems that this page has disappeared into the darkness. It may have been moved or never existed.
+    </p>
+
+    <!-- Разделитель -->
+    <div class="divider"></div>
+
+    <!-- Кнопки -->
+    <div class="button-group">
+      <a href="index.html" class="primary-btn">
+        ← Main page
+      </a>
+      <a href="mailto:oscarbyosa@gmail.com" class="secondary-btn">
+        Write to me ✦
+      </a>
+    </div>
+
+    <!-- Футер -->
+    <div class="footer-note">
+      © 2026 <a href="index.html">OscarByOsa</a> • Graphic Designer, 18 years old
+    </div>
+
+  </div>
+</body>
+</html>
